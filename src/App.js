@@ -4,12 +4,13 @@ import {
     HeaderContainer,
     MovieDesc,
     MoviesList,
+    Button,
 } from './components/styled';
 
 const Header = () => {
     return (
         <HeaderContainer>
-            <button>Sort by</button>
+            <Button>Sort by...</Button>
             <SearchBar />
         </HeaderContainer>
     );

@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 
 export const StyledSSearchBar = styled('input')({
-    color: 'red',
+    width: '100%',
+    margin: '0 10px',
 });
 
 export const HeaderContainer = styled('div')({
     backgroundColor: '#F7F8FA',
+    display: 'flex',
+    padding: '10px 10px',
 });
 
 export const BodyContainer = styled('div')({
@@ -13,4 +16,7 @@ export const BodyContainer = styled('div')({
 });
 
 export const MoviesList = styled('div')({});
+
 export const MovieDesc = styled('div')({});
+
+export const Button = styled('a')({ display: 'block' });
