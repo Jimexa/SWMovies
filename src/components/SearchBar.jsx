@@ -1,3 +1,5 @@
+import { StyledSSearchBar } from "./styled"
+
 export default function SearchBar(){
-    return <>Search</>
+    return <StyledSSearchBar type="text"/>
 }
