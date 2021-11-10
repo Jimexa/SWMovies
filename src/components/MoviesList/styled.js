@@ -14,7 +14,6 @@ export const MoviesListContainer = styled('div')(
 export const MoviesListItem = styled('div')(
     {
         display: 'grid',
-
         padding: '10px 20px',
         ':hover': { backgroundColor: '#ebebeb', cursor: 'pointer' },
     },

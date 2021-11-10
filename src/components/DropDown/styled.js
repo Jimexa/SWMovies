@@ -6,12 +6,15 @@ export const DropDownContainer = styled('div')`
 `;
 
 export const DropDownHeader = styled('div')`
-    padding: 0.4em 2em 0.4em 1em;
+    padding: 0.2em 0.4em 0.2em 1em;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
     font-weight: 500;
     font-size: 1.3rem;
     color: gray;
     background: #ffffff;
+    @media (min-width: 600px) {
+        padding: 0.4em 2em 0.4em 1em;
+    }
     &:hover {
         background-color: #ebebeb;
         cursor: pointer;
@@ -26,13 +29,16 @@ export const DropDownList = styled('ul')`
     margin-top: 10px;
     padding: 0;
     margin: 0;
-    width: 30vw;
+    width: 40vw;
     background: #ffffff;
     border: 2px solid #e5e5e5;
     box-sizing: border-box;
     color: gray;
     font-size: 1.3rem;
     font-weight: 500;
+    @media (min-width: 600px) {
+        width: 20vw;
+    }
     & :first-of-type {
         color: #616161;
     }
