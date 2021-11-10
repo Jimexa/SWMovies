@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const AppContainer = styled('div')({
+    fontFamily: '-moz-initial',
+});
+
 export const StyledSSearchBar = styled('input')({
     width: '100%',
     margin: '0 10px',
@@ -19,4 +23,4 @@ export const MoviesList = styled('div')({});
 
 export const MovieDesc = styled('div')({});
 
-export const Button = styled('a')({ display: 'block' });
+export const Button = styled('input')({ display: 'block' });
