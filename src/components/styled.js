@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { mq } from '../helpers/config';
 
 export const AppContainer = styled('div')({
     fontFamily: '-moz-initial',
@@ -18,11 +19,10 @@ export const HeaderContainer = styled('div')({
     padding: '10px 10px',
 });
 
-export const BodyContainer = styled('div')({
-    display: 'flex',
-    flex: 1,
-});
-
-export const MovieDesc = styled('div')({});
-
-export const Button = styled('input')({ display: 'block' });
+export const BodyContainer = styled('div')(
+    {
+        display: 'flex',
+        flex: 1,
+    },
+    mq({ flexDirection: ['column', 'row'] }),
+);
