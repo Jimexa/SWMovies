@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 
 export const AppContainer = styled('div')({
     fontFamily: '-moz-initial',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
 });
 
 export const StyledSSearchBar = styled('input')({
@@ -17,9 +20,8 @@ export const HeaderContainer = styled('div')({
 
 export const BodyContainer = styled('div')({
     display: 'flex',
+    flex: 1,
 });
-
-export const MoviesList = styled('div')({});
 
 export const MovieDesc = styled('div')({});
 

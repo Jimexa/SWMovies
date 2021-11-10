@@ -9,19 +9,19 @@ import DropDown from './components/DropDown/DropDown';
 import {
     BodyContainer,
     HeaderContainer,
-    MovieDesc,
-    MoviesList,
-    Button,
     AppContainer,
 } from './components/styled';
 import { moviesConfig } from './helpers/config';
+import MoviesList from './components/MoviesList/MoviesList';
+import MovieDescription from './components/MoviesDescription/MovieDescription';
+import moment from 'moment';
 
 export const AppContext = createContext();
 
 const Header = () => {
     return (
         <HeaderContainer>
-            {/* <Button type="">Sort by...</Button> */}
+            {/* <Button type="">Sort by...</Button>*/}
             <DropDown />
             <SearchBar />
         </HeaderContainer>
@@ -32,7 +32,7 @@ const Body = () => {
     return (
         <BodyContainer>
             <MoviesList />
-            <MovieDesc />
+            <MovieDescription />
         </BodyContainer>
     );
 };
@@ -40,6 +40,7 @@ const Body = () => {
 function App() {
     const [searchTerm, setSearchTerm] = useState('');
     const [moviesData, setMoviesData] = useState(null);
+    const [selectedMovieId, setSelectedMovieId] = useState(null);
 
     useEffect(() => {
         fetch(moviesConfig.url, {
@@ -47,7 +48,13 @@ function App() {
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Movies request failed');
+                }
+            })
             .then((data) => {
                 console.log(data);
                 const parsedMovies = data.map((movie) => {
@@ -55,12 +62,42 @@ function App() {
                         release_date: movie?.fields?.release_date,
                         title: movie?.fields?.title,
                         description: movie?.fields?.opening_crawl,
+                        episode_id: movie?.fields?.episode_id,
                     };
                 });
                 setMoviesData(parsedMovies);
                 console.log(parsedMovies);
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }, []);
+
+    const sortMoviesByYear = useCallback(() => {
+        if (moviesData) {
+            const sortedMovies = moviesData.sort((a, b) =>
+                moment(b.release_date).isAfter(a.release_date)
+                    ? -1
+                    : moment(a.release_date).isAfter(b.release_date)
+                    ? 1
+                    : 0,
+            );
+            setMoviesData([...sortedMovies]);
+        }
+    }, [moviesData, setMoviesData]);
+
+    const sortMoviesByEpisode = useCallback(() => {
+        if (moviesData) {
+            const sortedMovies = moviesData.sort((a, b) =>
+                a.episode_id < b.episode_id
+                    ? -1
+                    : a.episode_id > b.episode_id
+                    ? 1
+                    : 0,
+            );
+            setMoviesData([...sortedMovies]);
+        }
+    }, [moviesData, setMoviesData]);
 
     const handleInputChange = useCallback(
         (e) => {
@@ -69,9 +106,24 @@ function App() {
         [setSearchTerm],
     );
 
+    const handleMovieClick = useCallback(
+        (id) => {
+            setSelectedMovieId(id);
+        },
+        [setSelectedMovieId],
+    );
+
     return (
         <AppContext.Provider
-            value={{ searchTerm, handleInputChange }}
+            value={{
+                searchTerm,
+                handleInputChange,
+                moviesData,
+                sortMoviesByYear,
+                sortMoviesByEpisode,
+                selectedMovieId,
+                handleMovieClick,
+            }}
         >
             <AppContainer>
                 <Header />
