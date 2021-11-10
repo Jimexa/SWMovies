@@ -40,7 +40,7 @@ const Body = () => {
 function App() {
     const [searchTerm, setSearchTerm] = useState('');
     const [moviesData, setMoviesData] = useState(null);
-    const [selectedMovieId, setSelectedMovieId] = useState(null);
+    const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
         fetch(moviesConfig.url, {
@@ -63,6 +63,7 @@ function App() {
                         title: movie?.fields?.title,
                         description: movie?.fields?.opening_crawl,
                         episode_id: movie?.fields?.episode_id,
+                        director: movie?.fields?.director,
                     };
                 });
                 setMoviesData(parsedMovies);
@@ -107,10 +108,10 @@ function App() {
     );
 
     const handleMovieClick = useCallback(
-        (id) => {
-            setSelectedMovieId(id);
+        (movie) => {
+            setSelectedMovie(movie);
         },
-        [setSelectedMovieId],
+        [setSelectedMovie],
     );
 
     return (
@@ -121,7 +122,7 @@ function App() {
                 moviesData,
                 sortMoviesByYear,
                 sortMoviesByEpisode,
-                selectedMovieId,
+                selectedMovie,
                 handleMovieClick,
             }}
         >

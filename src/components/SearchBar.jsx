@@ -10,6 +10,7 @@ export default function SearchBar() {
             onChange={handleInputChange}
             value={searchTerm}
             type="text"
+            placeholder="Type to search..."
         />
     );
 }

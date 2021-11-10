@@ -15,9 +15,7 @@ export default function MoviesList() {
                 ? moviesData.map((movie) => {
                       return (
                           <MoviesListItem
-                              onClick={() =>
-                                  handleMovieClick(movie.episode_id)
-                              }
+                              onClick={() => handleMovieClick(movie)}
                               key={movie.episode_id}
                           >
                               <Episode>

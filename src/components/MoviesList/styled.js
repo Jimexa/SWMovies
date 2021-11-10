@@ -9,6 +9,7 @@ export const MoviesListItem = styled('div')({
     display: 'grid',
     gridTemplateColumns: '15% auto 15%',
     padding: '10px 20px',
+    ':hover': { backgroundColor: '#ebebeb', cursor: 'pointer' },
 });
 
 export const Episode = styled('span')({
