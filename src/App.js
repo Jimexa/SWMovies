@@ -102,7 +102,9 @@ function App() {
 
     const handleInputChange = useCallback(
         (e) => {
-            setSearchTerm(e.target.value);
+            if (moviesData) {
+                setSearchTerm(e.target.value);
+            }
         },
         [setSearchTerm],
     );
