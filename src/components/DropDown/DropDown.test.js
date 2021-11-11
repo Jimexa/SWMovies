@@ -9,7 +9,7 @@ const sortMoviesByEpisode = () => {
     console.log('sortbyepisode');
 };
 
-test('renders dropdown', () => {
+test('renders dropdown button text', () => {
     render(
         <AppContext.Provider
             value={(sortMoviesByEpisode, sortMoviesByYear)}
