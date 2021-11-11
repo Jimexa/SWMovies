@@ -106,7 +106,7 @@ function App() {
                 setSearchTerm(e.target.value);
             }
         },
-        [setSearchTerm],
+        [setSearchTerm, moviesData],
     );
 
     const handleMovieClick = useCallback(
